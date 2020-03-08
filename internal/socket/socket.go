@@ -1,32 +1,27 @@
 package socket
 
 import (
-	"io"
+	"context"
 	"net"
+	"net/http"
+	"time"
 )
 
 const (
 	socketType = "unix"
+
+	socketTimeout = 1 * time.Hour
 )
 
-type Forwarder struct {
-	socketPath string
-}
-
-func New(path string) *Forwarder {
-	return &Forwarder{
-		socketPath: path,
+// New creates an HTTP client that makes requests to the specified socket,
+// which is just a filepath.
+func New(socket string) *http.Client {
+	return &http.Client{
+		Timeout: socketTimeout,
+		Transport: &http.Transport{
+			DialContext: func(_ context.Context, _, _ string) (net.Conn, error) {
+				return net.Dial(socketType, socket)
+			},
+		},
 	}
-}
-
-func (f *Forwarder) Start(source io.Reader) error {
-	output, err := net.Dial(socketType, f.socketPath)
-	if err != nil {
-		return err
-	}
-
-	_ = output
-
-	// io.Copy(output, source)
-	return nil
 }

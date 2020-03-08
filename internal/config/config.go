@@ -20,7 +20,7 @@ func ParseArguments() Arguments {
 	)
 	flag.StringVar(
 		&bindAddr,
-		"bind-to",
+		"bind",
 		"localhost:8500",
 		"bind address (i.e. inside network namespace)",
 	)

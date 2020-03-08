@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"context"
 	"io/ioutil"
-	"net"
 	"net/http"
 	"net/url"
 	"time"
@@ -17,15 +16,8 @@ const (
 	apiReadTimeout = 100 * time.Second
 )
 
-func newAPI(log loggy.Logger) http.HandlerFunc {
-	client := &http.Client{
-		Timeout: apiReadTimeout,
-		Transport: &http.Transport{
-			DialContext: func(_ context.Context, _, _ string) (net.Conn, error) {
-				return net.Dial("unix", "/tmp/consul-test.sock")
-			},
-		},
-	}
+func newAPI(client *http.Client) http.HandlerFunc {
+	log := loggy.New("api")
 
 	return func(w http.ResponseWriter, r *http.Request) {
 		log.Tracef("%s request to %q", r.Method, r.URL.EscapedPath())
