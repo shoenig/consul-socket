@@ -1,7 +1,7 @@
 consul-socket
 =============
 
-Forward [consul](https://github.com/hashicorp/consul) HTTP requests over Unix socket
+Forward [consul](https://github.com/hashicorp/consul) HTTP API requests over Unix socket
 
 [![Go Report Card](https://goreportcard.com/badge/gophers.dev/cmds/consul-socket)](https://goreportcard.com/report/gophers.dev/cmds/consul-socket)
 [![Build Status](https://travis-ci.com/shoenig/consul-socket.svg?branch=master)](https://travis-ci.com/shoenig/consul-socket)
