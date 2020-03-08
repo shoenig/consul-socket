@@ -1,7 +1,7 @@
 consul-socket
 =============
 
-Forward `consul` HTTP requests over Unix socket
+Forward [consul](https://github.com/hashicorp/consul) HTTP requests over Unix socket
 
 [![Go Report Card](https://goreportcard.com/badge/gophers.dev/cmds/consul-socket)](https://goreportcard.com/report/gophers.dev/cmds/consul-socket)
 [![Build Status](https://travis-ci.com/shoenig/consul-socket.svg?branch=master)](https://travis-ci.com/shoenig/consul-socket)
@@ -15,12 +15,13 @@ Module `gophers.dev/cmds/consul-socket` provides a simple, lightweight agent tha
 will proxy HTTP requests bound for Consul, and forward them over a Unix socket.
 
 This is an **experimental** proof of concept for one possible way of enabling
-connect-native services work in `nomad`.
+connect-native services work in [nomad](https://github.com/hashicorp/nomad).
 
 The point of the `consul-socket` agent is that it can run inside a network namespace
 along side a connect-native application, and proxy HTTP requests bound for Consul through
-a Unix domain socket. This is necessary because with Consul running on the host network,
-the services inside the network namespace can not make network connections to it.
+a [Unix domain socket](https://en.wikipedia.org/wiki/Unix_domain_socket). This is
+necessary because with Consul running on the host network, the services inside the network
+namespace can not make network connections to it.
 
 # Getting Started
 
