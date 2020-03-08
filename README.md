@@ -20,8 +20,8 @@ connect-native tasks to work in [nomad](https://github.com/hashicorp/nomad).
 The purpose of the `consul-socket` agent is that it can run inside a network namespace
 alongside a connect-native task, and proxy HTTP requests bound for Consul through
 a [Unix domain socket](https://en.wikipedia.org/wiki/Unix_domain_socket). This is
-necessary because with Consul running on the host network, the services inside the network
-namespace can not make network connections to it.
+necessary because with Consul running on the host network, the services running inside
+the network namespace can not make outward network connections to the Consul agent.
 
 # Getting Started
 
