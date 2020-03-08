@@ -17,6 +17,11 @@ will proxy HTTP requests bound for Consul, and forward them over a Unix socket.
 This is an **experimental** proof of concept for one possible way of enabling
 connect-native services work in `nomad`.
 
+The point of the `consul-socket` agent is that it can run inside a network namespace
+along side a connect-native application, and proxy HTTP requests bound for Consul through
+a Unix domain socket. This is necessary because with Consul running on the host network,
+the services inside the network namespace can not make network connections to it.
+
 # Getting Started
 
 The `consul-socket` command can be installed by running
@@ -40,10 +45,31 @@ Consul needs to be configured to listen to a unix socket for the `http` address.
 See the `hack/consul.hcl` example file for a toy setup that enables 2 Connect-native
 services to communicate with one another.
 
-The point of the `consul-socket` agent is that it can run inside a network namespace
-along side a connect-native application, and proxy HTTP requests bound for Consul through
-a Unix domain socket. This is necessary because with Consul running on the host network,
-the services inside the network namespace can not make network connections to it.
+#### Launch consul (with example config)
+
+```bash
+consul agent -dev --config-file=consul.hcl
+```
+
+#### Launch consul-socket
+
+```bash
+consul-socket -bind 127.0.0.1:8500 -socket /tmp/consul-test.sock
+```
+
+#### Launch doughboy (as native responder)
+(from the doughboy repo)
+
+```bash
+doughboy hack/native-responder.hcl
+```
+
+#### Launch doughboy (as native requester)
+(from the doughboy repo)
+
+```bash
+doughboy hack/native-requester.hcl
+```
 
 # Contributing
 
