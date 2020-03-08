@@ -48,27 +48,29 @@ services to communicate with one another.
 #### Launch consul (with example config)
 
 ```bash
-consul agent -dev --config-file=consul.hcl
+# from the consul-socket repo
+$ consul agent -dev --config-file hack/consul.hcl
 ```
 
 #### Launch consul-socket
 
 ```bash
-consul-socket -bind 127.0.0.1:8500 -socket /tmp/consul-test.sock
+# from the consul-socket repo
+$ consul-socket --bind 127.0.0.1:8500 --socket /tmp/consul-test.sock
 ```
 
 #### Launch doughboy (as native responder)
-(from the doughboy repo)
 
 ```bash
-doughboy hack/native-responder.hcl
+# from the doughboy repo
+$ doughboy hack/native-responder.hcl
 ```
 
 #### Launch doughboy (as native requester)
-(from the doughboy repo)
 
 ```bash
-doughboy hack/native-requester.hcl
+# from the doughboy repo
+$ doughboy hack/native-requester.hcl
 ```
 
 # Contributing
