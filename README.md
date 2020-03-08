@@ -91,7 +91,7 @@ $ docker run \
 	 shoenig/consul-socket \
 	     --socket=/tmp/consul-test.sock \
 	     --bind 0.0.0.0:8500
-
+```
 
 # Contributing
 
