@@ -1,2 +1,4 @@
+github.com/pkg/errors v0.9.1 h1:FEBLx1zS214owpjy7qsBeixbURkuhQAwrK5UwLGTwt4=
+github.com/pkg/errors v0.9.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
 gophers.dev/pkgs/loggy v0.2.0 h1:RHGu/0+jWPnmjZLbE2p6sSQpc1EBPI+xAjv+Ed0IOHE=
 gophers.dev/pkgs/loggy v0.2.0/go.mod h1:koPulCjd0uOF7vTler1oyyDU/5QgA66U6kCk73rBZ6M=
