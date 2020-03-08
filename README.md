@@ -15,7 +15,7 @@ Module `gophers.dev/cmds/consul-socket` provides a simple, lightweight agent tha
 will proxy HTTP requests bound for Consul, and forward them over a Unix socket.
 
 This is an **experimental** proof of concept for one possible way of enabling
-Connect-native services work in `nomad`.
+connect-native services work in `nomad`.
 
 # Getting Started
 
@@ -39,6 +39,11 @@ Usage of ./consul-socket:
 Consul needs to be configured to listen to a unix socket for the `http` address.
 See the `hack/consul.hcl` example file for a toy setup that enables 2 Connect-native
 services to communicate with one another.
+
+The point of the `consul-socket` agent is that it can run inside a network namespace
+along side a connect-native application, and proxy HTTP requests bound for Consul through
+a Unix domain socket. This is necessary because with Consul running on the host network,
+the services inside the network namespace can not make network connections to it.
 
 # Contributing
 
