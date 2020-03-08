@@ -45,6 +45,8 @@ Consul needs to be configured to listen to a unix socket for the `http` address.
 See the `hack/consul.hcl` example file for a toy setup that enables 2 Connect-native
 services to communicate with one another.
 
+### Plain example
+
 #### Launch consul (with example config)
 
 ```bash
@@ -72,6 +74,24 @@ $ doughboy hack/native-responder.hcl
 # from the doughboy repo
 $ doughboy hack/native-requester.hcl
 ```
+
+### As docker container
+
+It is unclear whether launching `consul-socket` as a docker container would be
+useful. For the intended use case in Nomad it will probably just be launched
+using the `exec` task driver, so as to avoid a dependency on having docker installed.
+
+However, the Dockerfile was easy to make, and the image can be launched as a container
+
+```bash
+$ docker run \
+  	 --rm \
+	 --publish 127.0.0.1:8500:8500/tcp \
+	 --volume /tmp/consul-test.sock:/tmp/consul-test.sock \
+	 shoenig/consul-socket \
+	     --socket=/tmp/consul-test.sock \
+	     --bind 0.0.0.0:8500
+
 
 # Contributing
 
