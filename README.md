@@ -27,7 +27,7 @@ the network namespace can not make outward network connections to the Consul age
 
 The `consul-socket` command can be installed by running
 ```bash
-$ go get gophers.dev/cmds/consul-socket
+$ go install gophers.dev/cmds/consul-socket@latest
 ```
 
 # Configuration
